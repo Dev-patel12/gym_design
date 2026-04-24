@@ -22,15 +22,15 @@ function calculateBMI() {
   if (bmi < 18.5) {
     type = "Thin";
     advice = "You are underweight. Increase calories and do strength training.";
-  } 
+  }
   else if (bmi < 25) {
     type = "Normal";
     advice = "Perfect! Maintain your current healthy lifestyle.";
-  } 
+  }
   else if (bmi < 30) {
     type = "Overweight";
     advice = "Start cardio and control diet to reduce weight.";
-  } 
+  }
   else {
     type = "Obese";
     advice = "High risk! Follow strict workout and consult a trainer.";
@@ -100,7 +100,7 @@ document.querySelectorAll('input[name="gender"]').forEach(radio => {
 
 // 🔥 Smooth Scroll
 document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', function(e) {
+  link.addEventListener('click', function (e) {
     e.preventDefault();
 
     let target = document.querySelector(this.getAttribute('href'));
