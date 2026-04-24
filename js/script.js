@@ -101,23 +101,14 @@ document.querySelectorAll('input[name="gender"]').forEach(radio => {
 // 🔥 Smooth Scroll
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
+    e.preventDefault();
 
-    let href = this.getAttribute('href');
+    let target = document.querySelector(this.getAttribute('href'));
 
-    // 👉 allow normal navigation for other pages
-    if (href.includes('.html')) return;
-
-    let target = document.querySelector(href);
-
-    // 👉 only scroll if section exists
-    if (target) {
-      e.preventDefault();
-
-      window.scrollTo({
-        top: target.offsetTop - 70,
-        behavior: "smooth"
-      });
-    }
+    window.scrollTo({
+      top: target.offsetTop - 70,
+      behavior: "smooth"
+    });
   });
 });
 
