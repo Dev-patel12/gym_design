@@ -1,8 +1,8 @@
 {
-  "rewrites": [
-    {
-      "source": "/new-event",
-      "destination": "/new-event.html"
-    }
-  ]
-}
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/user/index.html"
+      }
+    ]
+  }
