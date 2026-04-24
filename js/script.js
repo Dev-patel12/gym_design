@@ -12,10 +12,10 @@ function calculateBMI() {
   }
 
   // Convert height from cm to meters for BMI calculation
-  height = height / 100;
+  let heightInMeters = height / 100;
 
   // Calculate BMI = weight (kg) / height² (m)
-  let bmi = weight / (height * height);
+  let bmi = weight / (heightInMeters * heightInMeters);
   bmi = parseFloat(bmi.toFixed(2));
 
   // Get selected gender (male or female)
@@ -27,15 +27,6 @@ function calculateBMI() {
   // Determine BMI category and provide fitness advice
   if (bmi < 18.5) {
     type = "Thin";
-    advice = "You are underweight. Increase calories and do strength training.";
-  }
-  else if (bmi < 25) {
-    type = "Normal";
-    advice = "Perfect! Maintain your current healthy lifestyle.";
-  }
-  else if (bmi < 30) {
-    type = "Overweight";
-    advice = "Start cardio and control diet to reduce weight.";
     advice = "⚠️ You are underweight. Focus on calorie surplus with protein-rich foods and strength training to build muscle.";
   }
   else if (bmi < 25) {
@@ -172,36 +163,21 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
 // ================= INITIALIZE AOS ANIMATIONS =================
 // AOS (Animate On Scroll) library initialization
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize AOS with custom settings
   if (typeof AOS !== 'undefined') {
     AOS.init({
-      duration: 800,        // Animation duration in ms
-      once: true,           // Whether animation should happen only once
-      offset: 100,          // Offset (in px) from the original trigger point
-      easing: 'ease-out',   // Default easing for AOS animations
+      duration: 800,
+      once: true,
+      offset: 100,
+      easing: 'ease-out',
     });
   }
-
-  // ================= ADDITIONAL LOADING ANIMATIONS =================
-  // Add fade-in effect to all sections on load
-  const allSections = document.querySelectorAll('section');
-  allSections.forEach((section, index) => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
-    setTimeout(() => {
-      section.style.opacity = '1';
-      section.style.transform = 'translateY(0)';
-    }, index * 100);
-  });
 });
 
-// ================= FORM SUBMISSION HANDLER (Prevent Default) =================
+// ================= FORM SUBMISSION HANDLER =================
 // Handles contact form submission with validation
 document.querySelectorAll('.contact-form').forEach(form => {
   form.addEventListener('submit', function(e) {
@@ -269,13 +245,6 @@ document.querySelectorAll('.service-card').forEach(card => {
   card.addEventListener('click', function() {
     let serviceName = this.querySelector('h5')?.innerText || 'this service';
     alert(`💪 ${serviceName} - Contact us for more details and personalized training sessions!`);
-  });
-});
-
-// ================= TRAINER CARD HOVER ENHANCEMENT =================
-document.querySelectorAll('.team-card').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
 });
 
