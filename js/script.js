@@ -256,3 +256,9 @@ window.addEventListener('load', function() {
   const loader = document.querySelector('.loader');
   if (loader) loader.style.display = 'none';
 });
+
+//block inspect
+document.oncontextmenu = () => false;
+document.onkeydown = function(e) {
+  if (e.keyCode == 123) return false; // F12 disabled
+}
