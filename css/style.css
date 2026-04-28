@@ -108,6 +108,85 @@ body::before {
   100% { transform: rotate(360deg); }
 }
 
+/* ================= NEW ANIMATION KEYFRAMES ================= */
+
+/* Pulse for hero CTA button */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(255, 59, 59, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
+}
+
+/* Hero text typewriter cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Particle float for hero slider */
+@keyframes particleFloat {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* Ripple effect on feature box hover */
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* About list item stagger slide-in */
+@keyframes listSlideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Counter number count-up shimmer */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* News badge pulse */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Glow border trace on contact form focus */
+@keyframes borderTrace {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Icon bounce on feature box */
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-12px) scale(1.1); }
+  60% { transform: translateY(-5px) scale(1.05); }
+}
+
+/* Slide-in reveal for section titles */
+@keyframes titleReveal {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to { clip-path: inset(0 0% 0 0); opacity: 1; }
+}
+
+/* Card flip shimmer sweep */
+@keyframes shimmerSweep {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}
+
+/* Footer link underline expand */
+@keyframes underlineExpand {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
 /* ================= ANIMATION CLASSES ================= */
 .fade-up { animation: fadeUp 0.8s ease forwards; opacity: 0; }
 .fade-left { animation: fadeLeft 0.8s ease forwards; opacity: 0; }
@@ -279,6 +358,40 @@ body::before {
   box-shadow: 0 10px 25px rgba(255, 59, 59, 0.4);
 }
 
+/* === NEW: Pulse animation on hero CTA button === */
+.pulse-btn {
+  animation: pulse 2.2s infinite;
+}
+
+/* === NEW: Floating particles in hero slider === */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 59, 59, 0.6);
+  animation: particleFloat linear infinite;
+}
+
+.particle:nth-child(1) { left: 10%; width: 6px; height: 6px; animation-duration: 8s; animation-delay: 0s; background: rgba(255, 59, 59, 0.5); }
+.particle:nth-child(2) { left: 25%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 2s; background: rgba(255, 122, 24, 0.5); }
+.particle:nth-child(3) { left: 45%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 4s; background: rgba(255, 204, 0, 0.4); }
+.particle:nth-child(4) { left: 60%; width: 8px; height: 8px; animation-duration: 11s; animation-delay: 1s; background: rgba(255, 59, 59, 0.6); }
+.particle:nth-child(5) { left: 75%; width: 12px; height: 12px; animation-duration: 14s; animation-delay: 3s; background: rgba(255, 122, 24, 0.4); }
+.particle:nth-child(6) { left: 90%; width: 7px; height: 7px; animation-duration: 10s; animation-delay: 5s; background: rgba(0, 212, 255, 0.4); }
+
 /* ================= FEATURES SECTION ================= */
 .features {
   padding: 100px 0;
@@ -311,6 +424,24 @@ body::before {
   height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* === NEW: Shimmer sweep on feature-box hover === */
+.feature-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transition: none;
+}
+
+.feature-box:hover::after {
+  animation: shimmerSweep 0.7s ease forwards;
 }
 
 .feature-box:hover {
@@ -331,6 +462,16 @@ body::before {
 .feature-box:hover .icon {
   transform: scale(1.15);
   animation: float 2s ease infinite;
+}
+
+/* === NEW: Icon bounce class (used on .icon-bounce on hover via JS-free CSS trick) === */
+.icon-bounce {
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.feature-box:hover .icon-bounce {
+  animation: iconBounce 0.6s ease;
 }
 
 .feature-box h4 {
@@ -379,6 +520,17 @@ body::before {
   color: var(--primary);
   transform: translateX(5px);
 }
+
+/* === NEW: Staggered list item animation === */
+.about-list-item {
+  opacity: 0;
+  animation: listSlideIn 0.6s ease forwards;
+}
+
+.about-list-item:nth-child(1) { animation-delay: 0.2s; }
+.about-list-item:nth-child(2) { animation-delay: 0.4s; }
+.about-list-item:nth-child(3) { animation-delay: 0.6s; }
+.about-list-item:nth-child(4) { animation-delay: 0.8s; }
 
 .about-section h2 {
   font-size: 42px;
@@ -478,6 +630,11 @@ body::before {
   font-size: 18px;
 }
 
+/* === NEW: BMI result box pop-in animation === */
+.bmi-result-box.result-pop {
+  animation: countUp 0.5s ease;
+}
+
 .bmi-title {
   font-size: 42px;
   font-weight: bold;
@@ -514,6 +671,24 @@ body::before {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
+  position: relative;
+}
+
+/* === NEW: Service card overlay on hover === */
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 59, 59, 0.12), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 .service-card img {
@@ -538,6 +713,8 @@ body::before {
   margin-top: 18px;
   font-weight: 700;
   font-size: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 /* ================= TEAM SECTION ================= */
@@ -566,6 +743,25 @@ body::before {
   text-align: center;
   transition: 0.5s;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* === NEW: Team card shimmer sweep === */
+.team-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: none;
+  pointer-events: none;
+}
+
+.team-card:hover::after {
+  animation: shimmerSweep 0.8s ease forwards;
 }
 
 .team-card img {
@@ -641,6 +837,8 @@ body::before {
   font-size: 12px;
   border-radius: 25px;
   font-weight: 600;
+  /* === NEW: badge pulse animation === */
+  animation: badgePulse 2s ease infinite;
 }
 
 .news-card .content {
@@ -726,6 +924,12 @@ body::before {
   outline: none;
 }
 
+/* === NEW: Contact form field animated border-glow on focus === */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  animation: borderGlow 1.5s ease infinite;
+}
+
 /* ================= FOOTER ================= */
 .footer {
   background: linear-gradient(135deg, #050505, #0a0202);
@@ -757,6 +961,23 @@ body::before {
   color: #bbb;
   text-decoration: none;
   transition: var(--transition);
+  position: relative;
+}
+
+/* === NEW: Footer link animated underline === */
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
 }
 
 .footer-links a:hover {
